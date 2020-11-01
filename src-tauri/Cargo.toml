@@ -1,11 +1,11 @@
 [package]
-name = "unit-test"
+name = "unittests-tauri-app"
 version = "0.1.0"
 description = "A Tauri App"
 authors = [ "you" ]
 license = ""
 repository = ""
-default-run = "unit-test"
+default-run = "unittests-tauri-app"
 edition = "2018"
 build = "src/build.rs"
 
@@ -22,5 +22,5 @@ embedded-server = [ "tauri/embedded-server" ]
 no-server = [ "tauri/no-server" ]
 
 [[bin]]
-name = "unit-test"
+name = "unittests-tauri-app"
 path = "src/main.rs"
