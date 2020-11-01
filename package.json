@@ -1,0 +1,14 @@
+{
+  "name": "unittests-tauri-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "tauri": "tauri"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "tauri": "^0.12.0"
+  }
+}
