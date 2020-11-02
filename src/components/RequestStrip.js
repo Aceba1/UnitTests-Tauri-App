@@ -1,4 +1,5 @@
-import Axios from 'axios';
+import http, { BodyType, ResponseType } from 'tauri/api/http'
+
 import React, { useState } from 'react'
 import Button from './Button'
 import Input from './Input'
@@ -8,13 +9,10 @@ function RequestStrip(props) {
   const [url, setURL] = useState("");
 
   const handleSend = () => {
-    Axios.get(url, {
-      
-      data: props.data,
-      headers: {
-        "Access-Control-Allow-Origin": "*", 
-        "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept",
-        ...props.headers}
+    http.request({
+      url:url,
+      responseType: ResponseType.Text,
+      method: "GET"
     })
     .then(props.getRes)
     .catch(props.getErr);
