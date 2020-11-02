@@ -9,8 +9,12 @@ function RequestStrip(props) {
 
   const handleSend = () => {
     Axios.get(url, {
+      
       data: props.data,
-      headers: props.headers
+      headers: {
+        "Access-Control-Allow-Origin": "*", 
+        "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept",
+        ...props.headers}
     })
     .then(props.getRes)
     .catch(props.getErr);

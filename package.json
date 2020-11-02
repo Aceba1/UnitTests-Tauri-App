@@ -22,7 +22,7 @@
     "dev": "wait-port localhost:3000 && tauri dev",
     "app-pkg": "npm run build && npm run bundle",
     "build": "react-scripts build",
-    "bundle": "tauri build --target win,lin,mac",
+    "bundle": "tauri build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

@@ -3,6 +3,9 @@ import RequestStrip from './RequestStrip'
 import TextArea from './TextArea'
 
 export default function RequestBox() {
+  /**
+   * @type {[res: import('axios').AxiosResponse, setRes: () => {}]} 
+   */
   const [res, setRes] = useState({})
   const [body, setBody] = useState("")
   return (
