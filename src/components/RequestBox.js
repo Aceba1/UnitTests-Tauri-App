@@ -6,12 +6,16 @@ export default function RequestBox() {
   /**
    * @type {[res: import('axios').AxiosResponse, setRes: () => {}]} 
    */
-  const [res, setRes] = useState({})
+  const [res, setRes] = useState("")
   const [body, setBody] = useState("")
+  const getMsg = val => {
+    console.log(val);
+    setRes(val);
+  }
   return (
     <div>
       <div>
-        <RequestStrip data={body} getRes={setRes} getErr={setRes}/>
+        <RequestStrip data={body} getRes={getMsg} getErr={getMsg}/>
         <label>Body:</label>
         <br/>
         <TextArea 
@@ -20,7 +24,7 @@ export default function RequestBox() {
           setValue={setBody} />
       </div>
       <div>
-        <code>{JSON.stringify(res)}</code>
+        <code>{res}</code>
       </div>
     </div>
   )

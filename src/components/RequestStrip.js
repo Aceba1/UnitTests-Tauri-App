@@ -14,8 +14,8 @@ function RequestStrip(props) {
       responseType: ResponseType.Text,
       method: "GET"
     })
-    .then(props.getRes)
-    .catch(props.getErr);
+    .then(v => props.getRes(v), v => props.getErr(v))
+    .catch(v => props.getErr(v));
   }
 
   return (
@@ -27,7 +27,7 @@ function RequestStrip(props) {
 }
 
 RequestStrip.propTypes = {
-  data: PropTypes.object,
+  data: PropTypes.any,
   headers: PropTypes.objectOf(PropTypes.string),
   getRes: PropTypes.func,
   getErr: PropTypes.func,
