@@ -1,4 +1,3 @@
-import RequestBox from "./components/RequestBox";
 
 function App() {
   return (
