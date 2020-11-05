@@ -4,18 +4,27 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+/**
+ * 
+ * @param {{items: {}[]}} props 
+ */
 function Options(props) {
   const handleChange = e => {
-    props.setIndex(e.target.selectedIndex);
+    if (props.setIndex !== undefined)
+      props.setIndex(e.target.selectedIndex);
+    if (props.setValue !== undefined) 
+      props.setValue(props.items[e.target.selectedIndex]);
   }
 
+  const index = props.index ?? props.items.findIndex(item => item === props.value);
+
   return (
-    <select className={props.className} selectedIndex={props.index} onChange={handleChange}>
+    <select className={props.className} selectedIndex={index} onChange={handleChange}>
       {
         props.items.map((item, id) => {
           return (
-            <option key={id} value={item.value}>
-              {item.name}
+            <option key={id} value={item}>
+              {item}
             </option>
           )
         })
@@ -27,13 +36,13 @@ function Options(props) {
 Options.propTypes = {
   className: PropTypes.string,
   
-  index: PropTypes.number.isRequired,
-  setIndex: PropTypes.func({newIndex: PropTypes.number}).isRequired,
+  value: PropTypes.string,
+  setValue: PropTypes.func({newValue: PropTypes.string}),
 
-  items: PropTypes.arrayOf(PropTypes.exact({
-    name: PropTypes.string.isRequired,
-    value: PropTypes.string.isRequired
-  })).isRequired
+  index: PropTypes.number,
+  setIndex: PropTypes.func({newIndex: PropTypes.number}),
+
+  items: PropTypes.arrayOf(PropTypes.string).isRequired
 }
 
 export default Options
