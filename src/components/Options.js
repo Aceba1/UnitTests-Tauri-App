@@ -1,5 +1,4 @@
 // Presents a drop-down list of items by passed properties
-// There's probably an HTML item specifically for this, use that
 
 import React from 'react'
 import PropTypes from 'prop-types'
@@ -37,10 +36,10 @@ Options.propTypes = {
   className: PropTypes.string,
   
   value: PropTypes.string,
-  setValue: PropTypes.func({newValue: PropTypes.string}),
+  setValue: PropTypes.func,
 
   index: PropTypes.number,
-  setIndex: PropTypes.func({newIndex: PropTypes.number}),
+  setIndex: PropTypes.func,
 
   items: PropTypes.arrayOf(PropTypes.string).isRequired
 }
