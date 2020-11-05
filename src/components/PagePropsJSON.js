@@ -9,3 +9,35 @@
 //   - If passed, store object within state
 // On-Store property:
 // - If valid, convert object to JSON text and return
+
+import React from 'react'
+import PropTypes from 'prop-types'
+import Input from './Input'
+
+function PairType(props) {
+  return (
+    <div className="PairType">
+      <Input className="key" value={props.key} setValue={props.setKey} />
+      <Input className="value" value={props.value} setValue={props.setValue} />
+    </div>
+  )
+}
+
+function PagePropsJSON(props) {
+
+  //TODO: Populate!
+
+  return (
+    <div>
+      
+    </div>
+  )
+}
+
+PagePropsJSON.propTypes = {
+  value: PropTypes.string.isRequired,
+  setValue: PropTypes.func({"newValue": PropTypes.any})
+}
+
+export default PagePropsJSON
+
