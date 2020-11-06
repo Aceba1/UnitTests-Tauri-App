@@ -18,7 +18,7 @@ function Options(props) {
   const index = props.index ?? props.items.findIndex(item => item === props.value);
 
   return (
-    <select className={props.className} selectedIndex={index} onChange={handleChange}>
+    <select className={props.className} value={props.value} onChange={handleChange}>
       {
         props.items.map((item, id) => {
           return (
