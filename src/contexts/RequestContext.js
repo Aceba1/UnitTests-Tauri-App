@@ -12,6 +12,7 @@
 // ? Provides hookable methods for before and after polling server
 
 import React, { createContext, useState } from "react";
+import performRequest from "../utils/performRequest";
 
 export const RequestContext = createContext();
 
@@ -22,8 +23,16 @@ export default function RequestContextProvider(props) {
   const [head, setHead] = useState({})
   const [resp, setResp] = useState(null)
 
+  const r = v => {
+    setResp((typeof v) + ":\n" + v);
+    console.log(typeof v);
+    console.log(v);
+  }
+
   const doRequest = () => {
-    //TODO: Populate!
+    console.log("Do Request!");
+    performRequest(type, url, head, body, r, r, r);
+    //TODO:
     // Verify URL?
     // Use ensureBody.js on Body and Header
     // Store response
