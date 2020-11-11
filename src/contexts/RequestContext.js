@@ -26,6 +26,12 @@ export default function RequestContextProvider(props) {
   const r = v => {
     setResp((typeof v) + ":\n" + v);
     console.log(typeof v);
+    if (v instanceof Object) {
+      for (let i in v) {
+        let o = v[i];
+        console.log(i + ": (" + typeof o + ") " + o);
+      }
+    }
     console.log(v);
   }
 

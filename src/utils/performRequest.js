@@ -1,5 +1,4 @@
-import html from 'tauri/api/http'
-
+import http, { ResponseType } from 'tauri/api/http'
 /**
  * 
  * @param {'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH' | 'HEAD' | 'OPTIONS' | 'CONNECT' | 'TRACE'} method
@@ -11,12 +10,13 @@ import html from 'tauri/api/http'
  * @param {(reason: any) => void} onErr
  */
 export default function performRequest(method, url, head, body, onPass, onFail, onErr) {
-  html.request({
+  http.request({
     method: method,
     url: url,
     headers: head,
     body: body,
-    responseType: 2, //ResponseType.Text
+    responseType: ResponseType.Text,
+    
   }).then(onPass)
   .catch(onErr)
 }
