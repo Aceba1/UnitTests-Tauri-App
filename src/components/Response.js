@@ -9,4 +9,17 @@ export default function Response() {
       <code>{resp}</code>
     </div>
   )
+  /*
+    <ContentContextProvider 
+      header={resp.header}
+      body={resp.body}
+      setHeader={() => {}}
+      setBody={() => {}}
+    >
+      <Pager 
+        className="ResponsePager"
+        pages={[ Header, Body ]} 
+      />
+    </ContentContextProvider>
+  */
 }

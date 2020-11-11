@@ -10,9 +10,10 @@
 // On-Store property:
 // - If valid, convert object to JSON text and return
 
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, { useContext } from 'react'
+
 import Input from './Input'
+import { TextContext } from '../contexts/TextContext';
 
 function PairType(props) {
   return (
@@ -23,7 +24,8 @@ function PairType(props) {
   )
 }
 
-function PagePropsJSON(props) {
+function TextPropsJSON() {
+  const {text, setText} = useContext(TextContext);
 
   //TODO: Populate!
 
@@ -34,10 +36,5 @@ function PagePropsJSON(props) {
   )
 }
 
-PagePropsJSON.propTypes = {
-  value: PropTypes.string.isRequired,
-  setValue: PropTypes.func({"newValue": PropTypes.any})
-}
-
-export default PagePropsJSON
+export default TextPropsJSON
 

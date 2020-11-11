@@ -18,9 +18,7 @@ import Tabber from './Tabber'
           items={props.pages} 
           className={props.className} />
         <div className={"Page " + props.className} >
-          <Page
-            //TODO: Figure out what exactly to pass to Page
-          />
+          <Page/>
         </div>
       </div>
     )

@@ -3,14 +3,18 @@
 // - paging for header and body
 //   - inner paging for different types, classNamed differently
 
-import React from 'react'
+import React, { useContext } from 'react'
 import BarURL from './BarURL'
 import Pager from './Pager'
 
 import Body from './PageBody'
 import Header from './PageHeader'
+import ContentContextProvider from '../contexts/ContentContext'
+import { RequestContext } from '../contexts/RequestContext'
 
 export default function RequestForm() {
+  const {body, setBody, head, setHead} = useContext(RequestContext)
+
   return (
     <div className="RequestForm">
       {/* 
@@ -18,7 +22,17 @@ export default function RequestForm() {
         //TODO: Could parameterize Pager.pages to match chosen request type
        */}
       <BarURL />
-      <Pager pages={[ Header, Body ]} />
+      <ContentContextProvider 
+        header={head}
+        body={body}
+        setHeader={setHead}
+        setBody={setBody}
+      >
+        <Pager 
+          className="RequestPager"
+          pages={[ Header, Body ]} 
+        />
+      </ContentContextProvider>
     </div>
   )
 }
