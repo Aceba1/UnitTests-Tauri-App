@@ -15,7 +15,7 @@ function Options(props) {
       props.setValue(props.items[e.target.selectedIndex]);
   }
 
-  const index = props.index ?? props.items.findIndex(item => item === props.value);
+  //const index = props.index ?? props.items.findIndex(item => item === props.value);
 
   return (
     <select className={props.className} value={props.value} onChange={handleChange}>

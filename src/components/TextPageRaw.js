@@ -11,7 +11,11 @@ import TextArea from './TextArea';
 
 function TextRaw() {
   
-  const {text, setText} = useContext(TextContext);
+  let {text, setText} = useContext(TextContext);
+  if (text instanceof Object) {
+    text = JSON.stringify(text);
+    setText(text);
+  }
   
   return (
     <TextArea 
