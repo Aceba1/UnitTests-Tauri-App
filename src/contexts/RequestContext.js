@@ -11,8 +11,10 @@
 // Provides method to request from server
 // ? Provides hookable methods for before and after polling server
 
-import React, { createContext, useState } from "react";
-import performRequest from "../utils/performRequest";
+import React, { createContext, useContext, useState } from "react";
+import ensureBody from "../utils/ensureBody";
+import performRequest from "../utils/requests";
+import { HistoryContext } from "./HistoryContext";
 
 export const RequestContext = createContext();
 
@@ -22,22 +24,34 @@ export default function RequestContextProvider(props) {
   const [body, setBody] = useState({})
   const [head, setHead] = useState({})
   const [resp, setResp] = useState(null)
+  const [status, setStatus] = useState("Send a request!")
 
-  const r = v => {
-    setResp((typeof v) + ":\n" + v);
-    console.log(typeof v);
-    if (v instanceof Object) {
-      for (let i in v) {
-        let o = v[i];
-        console.log(i + ": (" + typeof o + ") " + o);
-      }
-    }
-    console.log(v);
+  const {addRequest, addResponse} = useContext(HistoryContext);
+
+  const requestPass = (v, index) => {
+    setResp(v);
+    const st = "Success!";
+    setStatus(st);
+    addResponse(index, v, st);
+  }
+
+  const requestFail = (v, index) => {
+    setResp(null);
+    
+    let err = "Request Failed!\n<code>" + v + "</code>";
+
+    setStatus(err);
+    addResponse(index, null, err);
   }
 
   const doRequest = () => {
     console.log("Do Request!");
-    performRequest(type, url, head, body, r, r, r);
+    setResp(null);
+    setStatus("Awaiting <code>" + type + "</code> response from\n<code>" + url + "</code> ...");
+
+    const index = addRequest(new Date().toTimeString(), type, url, head, body);
+
+    performRequest(type, url, ensureBody(head), ensureBody(body), requestPass, requestFail, requestFail, index);
     //TODO:
     // Verify URL?
     // Use ensureBody.js on Body and Header
@@ -46,7 +60,14 @@ export default function RequestContextProvider(props) {
   }
 
   return (
-    <RequestContext.Provider value={{url, setUrl, type, setType, body, setBody, head, setHead, resp, setResp, doRequest}}>
+    <RequestContext.Provider value={{
+      url, setUrl, 
+      type, setType, 
+      body, setBody, 
+      head, setHead, 
+      resp, setResp, 
+      doRequest, 
+      status, setStatus}}>
       {props.children}
     </RequestContext.Provider>
   )

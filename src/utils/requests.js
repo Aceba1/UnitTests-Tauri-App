@@ -1,4 +1,5 @@
 import http, { ResponseType } from 'tauri/api/http'
+
 /**
  * 
  * @param {'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH' | 'HEAD' | 'OPTIONS' | 'CONNECT' | 'TRACE'} method
@@ -9,7 +10,7 @@ import http, { ResponseType } from 'tauri/api/http'
  * @param {(reason: any) => void} onFail
  * @param {(reason: any) => void} onErr
  */
-export default function performRequest(method, url, head, body, onPass, onFail, onErr) {
+export default function performRequest(method, url, head, body, onPass, onFail, onErr, index) {
   http.request({
     method: method,
     url: url,
@@ -17,6 +18,6 @@ export default function performRequest(method, url, head, body, onPass, onFail, 
     body: body,
     responseType: ResponseType.Text,
     
-  }).then(onPass)
-  .catch(onErr)
+  }).then(v => onPass(v, index), v => onFail(v, index))
+  .catch(v => onErr(v, index))
 }
