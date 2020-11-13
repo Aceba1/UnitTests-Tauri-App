@@ -13,16 +13,18 @@ function TextRaw() {
   
   let {text, setText} = useContext(TextContext);
   if (text instanceof Object) {
-    text = JSON.stringify(text);
+    text = JSON.stringify(text, undefined, 2);
     setText(text);
   }
   
   return (
-    <TextArea 
-      value={text}
-      setValue={setText}
-      placeholder="{ }"
-    />
+    <div className="TextPageRaw">
+      <TextArea 
+        value={text}
+        setValue={setText}
+        placeholder="{ }"
+      />
+    </div>
   )
 }
 

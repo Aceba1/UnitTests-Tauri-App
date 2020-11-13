@@ -30,7 +30,7 @@ export default function RequestForm() {
       >
         <Pager 
           className="RequestPager"
-          pages={[ Header, Body ]} 
+          pages={[ Body, Header ]} 
         />
       </ContentContextProvider>
     </div>

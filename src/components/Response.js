@@ -10,24 +10,32 @@ export default function Response() {
   const { resp, status } = useContext(RequestContext);
 
   return resp != null ? (
-    <TextContextProvider 
-      text={resp}
-      setText={() => {}}
-    >
-      <Pager 
-        className="Response BodyPager code"
-        pages={[TextRaw, TextPropsJSON] 
-        /*
-          TODO: Conditionally show TextPropsJSON if data is valid JSON
-          Possibly consider HTML page?
-        */} 
-      />
-    </TextContextProvider>
+    <div className="Response">
+      <TextContextProvider 
+        text={resp}
+        setText={() => {}}
+      >
+        <h1>Response</h1>
+        <div className="ResponseContent">
+          <Pager 
+            className="Pager2 BodyPager code"
+            pages={[TextRaw, TextPropsJSON] 
+            /*
+              TODO: Conditionally show TextPropsJSON if data is valid JSON
+              Possibly consider HTML page?
+            */} 
+          />
+        </div>
+      </TextContextProvider>
+    </div>
   ) : (
-    <div 
-      className="Response linebreak EmptyResponse" 
-      dangerouslySetInnerHTML={{__html: status}} 
-    />
+    <div className="Response EmptyResponse">
+      <h1>Response</h1>
+      <div 
+        className="ResponseContent linebreak EmptyResponse" 
+        dangerouslySetInnerHTML={{__html: status}} 
+      />
+    </div>
   )
   //TODO: Resolve header acquisition
   /*

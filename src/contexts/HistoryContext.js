@@ -35,7 +35,6 @@ export default function HistoryContextProvider(props) {
     let items = history.items;
     const index = items.push({time, type, url, head, body}) - 1;
     setHistory({items});
-    console.log(index + " " + url);
     return index;
   }
 
@@ -46,12 +45,9 @@ export default function HistoryContextProvider(props) {
    * @param {string} status 
    */
   const addResponse = (index, resp, status) => {
-    console.log(index + " " + status);
     let items = history.items;
-    console.log(history);
-    console.log(items);
     const item = items[index];
-    console.log(item);
+
     item.resp = resp;
     item.status = status;
     //items[index] = {...(items[index]), resp:resp, status:status};

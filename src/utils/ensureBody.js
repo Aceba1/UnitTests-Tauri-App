@@ -2,19 +2,28 @@
  * 
  * @param {string|{}|{key:string,value:any}[]} value 
  */
-export default function ensureBody(value) {
-  if (typeof value == "string")
-    return value;
+export default function ensureBody(value, allowString = false) {
+  try {
+    if (!value) 
+      return allowString ? "" : {};
 
-  if (typeof value == "array") {
-    let obj = {};
-    for (let i = 0; i < value.length; i++)
-      obj[value[i].key] = value[i].value;
-    return JSON.stringify(obj);
-  }
-  
-  if (typeof value == "object")
-    return JSON.stringify(value);
+    if (typeof value == "string")
+      return allowString ? value : JSON.parse(value);
+
+    if (typeof value == "array") {
+      let obj = {};
+      for (let i = 0; i < value.length; i++)
+        obj[value[i].key] = value[i].value;
+      return obj;
+    }
     
-  console.log("ensureBody: Unexpected type " + typeof value);
+    if (typeof value == "object")
+      return value;
+      
+    console.log("ensureBody: Unexpected type " + typeof value);
+  } catch(e) {
+    console.log(e);
+    return e;
+  }
+  return {};
 }

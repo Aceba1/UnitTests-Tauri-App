@@ -11,7 +11,7 @@ import Button from './Button'
     return (
       <Button 
         key={props.index} 
-        className={props.className + " Tab " + props.active} 
+        className={props.className + " Tab" + (props.active ? " Tab-active" : "")} 
         text={props.text} 
         onClick={() => props.setActive(props.index)} />
     )

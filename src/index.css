@@ -1,10 +1,37 @@
+html {
+  min-width: 100%;
+  min-height: 100%;
+}
+
 body {
+  display: block;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.AppHolder,
+.App {
+}
+
+.Requester {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.RequestForm {
+  flex-grow: 1;
+}
+
+h1 {
+  padding-top: 4px;
+  text-align: center;
+  color: white;
+  font-size: 1rem;
 }
 
 code {
@@ -17,4 +44,105 @@ code {
 .linebreak {
   white-space: pre-wrap;
   overflow-wrap: break-word;
+}
+
+.BarURL {
+  display: flex;
+  background-color: orange;
+  padding: 4px;
+}
+.RequestType {
+ flex: 0;
+ border-style: none;
+}
+.URL {
+  flex: 1;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+.Send {
+  flex: 0;
+  margin: -2px -2px -2px 4px;
+  border-radius: 4px;
+}
+
+button {
+  flex: 1;
+  margin: 2px 4px;
+  padding: 4px 8px;
+  background-color: white;
+  border-style: none;
+}
+button:hover {
+  background-color: gainsboro;
+}
+button:active {
+  background-color: white;
+}
+
+input {
+  background-color: white;
+  border-style: none;
+}
+
+.Response {
+  background-color: orange;
+}
+
+.ResponseContent {
+  margin: 0px 8px 8px;
+  padding: 4px 4px;
+  border-radius: 8px;
+  background-color: white;
+}
+
+.Pager {
+  display: block;
+  min-height: 100px;
+}
+
+
+.Tabber {
+  display: flex;
+  background-color: orange;
+}
+
+.Tabber.Pager2 {
+  background-color: white;
+}
+
+.Tab {
+  background-color: orange;
+  color: white;
+  margin: 2px;
+  padding: 2px;
+}
+
+.Tab:hover {
+  background-color: orange;
+}
+
+.Tab button:active::after,
+.Tab-active {
+  border-bottom: 2px solid white;
+}
+
+
+.Pager2 .Tab {
+  background-color: white;
+  color: orange;
+}
+
+.Tabber.Pager2 button:active::after,
+.Tabber.Pager2 .Tab-active{
+  border-bottom: 2px solid orange;
+}
+
+.TextPageRaw {
+  display: flex;
+}
+
+textarea {
+  flex: 1;
+  min-height: 100px;
 }

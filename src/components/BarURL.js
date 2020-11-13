@@ -18,9 +18,9 @@ export default function BarURL() {
   const { url, setUrl, type, setType, doRequest } = useContext(RequestContext);
   return (
     <div className="BarURL">
-      <Options items={["GET", "POST", "PUT", "HEAD", "DELETE", "PATCH", "OPTIONS"]} value={type} setValue={setType} />
+      <Options className="RequestType" items={["GET", "POST", "PUT", "HEAD", "DELETE", "PATCH", "OPTIONS"]} value={type} setValue={setType} />
       <Input className="URL" placeholder="Target URL" value={url} setValue={setUrl} />
-      <Button className={"Send " + type} text={type} onClick={doRequest} />
+      <Button className={"Send " + type} text="SEND" onClick={doRequest} />
     </div>
   )
 }

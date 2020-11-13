@@ -11,13 +11,17 @@ import http, { ResponseType } from 'tauri/api/http'
  * @param {(reason: any) => void} onErr
  */
 export default function performRequest(method, url, head, body, onPass, onFail, onErr, index) {
-  http.request({
-    method: method,
-    url: url,
-    headers: head,
-    body: body,
-    responseType: ResponseType.Text,
-    
-  }).then(v => onPass(v, index), v => onFail(v, index))
-  .catch(v => onErr(v, index))
+  try {
+    http.request({
+      method: method,
+      url: url,
+      headers: head,
+      body: body,
+      responseType: ResponseType.Text,
+      
+    }).then(v => onPass(v, index), v => onFail(v, index))
+    .catch(v => onErr(v, index))
+  } catch(e) {
+    onErr(e, index);
+  }
 }

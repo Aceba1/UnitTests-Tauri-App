@@ -47,11 +47,28 @@ export default function RequestContextProvider(props) {
   const doRequest = () => {
     console.log("Do Request!");
     setResp(null);
+
+    const eH = ensureBody(head);
+    if (eH instanceof Error) {
+      setStatus("HEADER is invalid!\n<code>" + eH.message + "</code>");
+      return;
+    }
+    const eB = ensureBody(body);
+    if (eB instanceof Error) {
+      setStatus("BODY is invalid!\n<code>" + eB.message + "</code>")
+      return;
+    }
+
     setStatus("Awaiting <code>" + type + "</code> response from\n<code>" + url + "</code> ...");
 
     const index = addRequest(new Date().toTimeString(), type, url, head, body);
 
-    performRequest(type, url, ensureBody(head), ensureBody(body), requestPass, requestFail, requestFail, index);
+    performRequest(type, url, 
+      eH, 
+      eB, //true), 
+      requestPass, requestFail, requestFail, 
+      index);
+
     //TODO:
     // Verify URL?
     // Use ensureBody.js on Body and Header
