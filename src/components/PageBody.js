@@ -21,5 +21,7 @@ function Body() {
   )
 }
 
+Body.displayName = "Body";
+
 export default Body
 

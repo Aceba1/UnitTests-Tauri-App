@@ -28,7 +28,7 @@ body {
 }
 
 h1 {
-  padding-top: 4px;
+  margin: 6px;
   text-align: center;
   color: white;
   font-size: 1rem;
@@ -96,6 +96,11 @@ input {
   background-color: white;
 }
 
+.Response .EmptyResponse {
+  color: #444;
+  padding: 8px;
+}
+
 .Pager {
   display: block;
   min-height: 100px;
@@ -127,7 +132,6 @@ input {
   border-bottom: 2px solid white;
 }
 
-
 .Pager2 .Tab {
   background-color: white;
   color: orange;
@@ -138,11 +142,18 @@ input {
   border-bottom: 2px solid orange;
 }
 
+.Pager2 .Page {
+  display: flex;
+}
+
 .TextPageRaw {
   display: flex;
 }
 
 textarea {
   flex: 1;
-  min-height: 100px;
+  min-height: min-content;
+  max-height: max-content;
+  border-style: none;
+  padding: 8px;
 }

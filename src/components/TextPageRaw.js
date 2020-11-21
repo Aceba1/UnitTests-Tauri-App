@@ -28,5 +28,7 @@ function TextRaw() {
   )
 }
 
+TextRaw.displayName = "Raw Text";
+
 export default TextRaw
 

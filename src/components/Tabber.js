@@ -10,7 +10,7 @@ function Tabber(props) {
       { props.items.map((item, index) => {
         return (
           <Tab 
-            text={item.name} 
+            text={item.displayName} 
             index={index} 
             key={index} 
             active={index===props.index} 

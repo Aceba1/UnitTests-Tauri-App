@@ -36,5 +36,7 @@ function TextPropsJSON() {
   )
 }
 
+TextPropsJSON.displayName = "JSON";
+
 export default TextPropsJSON
 
