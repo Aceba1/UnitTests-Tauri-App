@@ -23,6 +23,7 @@ export default function RequestContextProvider(props) {
   const [type, setType] = useState("GET")
   const [body, setBody] = useState({})
   const [head, setHead] = useState({})
+  const [param, setParam] = useState({})
   const [resp, setResp] = useState(null)
   const [status, setStatus] = useState("Send a request!")
 
@@ -53,9 +54,14 @@ export default function RequestContextProvider(props) {
       setStatus("HEADER is invalid!\n<code>" + eH.message + "</code>");
       return;
     }
-    const eB = ensureBody(body);
+    const eB = ensureBody(body, true);
     if (eB instanceof Error) {
       setStatus("BODY is invalid!\n<code>" + eB.message + "</code>")
+      return;
+    }
+    const eP = ensureBody(param);
+    if (eP instanceof Error) {
+      setStatus("PARAM is invalid!\n<code>" + eP.message + "</code>")
       return;
     }
 
@@ -64,6 +70,7 @@ export default function RequestContextProvider(props) {
     const index = addRequest(new Date().toTimeString(), type, url, head, body);
 
     performRequest(type, url, 
+      eP,
       eH, 
       eB, //true), 
       requestPass, requestFail, requestFail, 
@@ -82,6 +89,7 @@ export default function RequestContextProvider(props) {
       type, setType, 
       body, setBody, 
       head, setHead, 
+      param, setParam,
       resp, setResp, 
       doRequest, 
       status, setStatus}}>
